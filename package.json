@@ -1,0 +1,14 @@
+{
+  "name": "swipe-back",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "scripts": {},
+  "author": "Chiawen Chen <golopot@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "parcel": "^2.1.1",
+    "prettier": "^2.5.1"
+  }
+}
