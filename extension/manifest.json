@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "swipe-back",
+  "version": "0.1.0",
+  "description": "",
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "run_at": "document_idle",
+      "js": ["swipe-back.js"],
+      "css": ["swipe-back.css"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["back-arrow.png"],
+      "matches": ["*://*/*"]
+    }
+  ]
+}
