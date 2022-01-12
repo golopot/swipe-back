@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "description": "",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "dev": "parcel example/index.html"
+  },
   "author": "Chiawen Chen <golopot@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.5.4",
-    "prettier": "^2.5.1"
+    "parcel": "^2.2.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
   }
 }

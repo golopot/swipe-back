@@ -10,12 +10,5 @@
       "js": ["swipe-back.js"],
       "css": ["swipe-back.css"]
     }
-  ],
-
-  "web_accessible_resources": [
-    {
-      "resources": ["back-arrow.png"],
-      "matches": ["*://*/*"]
-    }
   ]
 }
