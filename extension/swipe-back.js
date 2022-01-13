@@ -38,7 +38,7 @@ leftArrow.src = IMAGE_LEFT_ARROW;
 container.appendChild(leftArrow);
 document.body.appendChild(container);
 
-let postitionScale = 5;
+let postitionScale = 6;
 let position = 0;
 let freezeUntil = 0;
 let fadeDelay = 500;
