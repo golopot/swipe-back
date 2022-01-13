@@ -1,9 +1,10 @@
 .swipe-back-left-arrow {
+  --size: 72px;
   position: fixed;
-  top: 50vh;
+  top: calc(50vh - var(--size) / 2);
   left: -100px;
-  width: 100px;
-  height: 100px;
+  width: var(--size);
+  height: var(--size);
 }
 
 .swipe-back-left-arrow.transition {
