@@ -98,9 +98,15 @@ function handleWheel(event) {
   }
 }
 
-function handleScroll() {
-  position = 0;
-  freezeUntil = Date.now() + 1200;
+let lastScrollX = 0;
+function handleScroll(event) {
+  const scrollX = event.target.scrollX ?? event.target.scrollLeft;
+  // only handles horizontal scroll
+  if (scrollX !== lastScrollX) {
+    position = 0;
+    freezeUntil = Date.now() + 1000;
+  }
+  lastScrollX = scrollX;
 }
 
 document.addEventListener("wheel", handleWheel);
