@@ -32,9 +32,11 @@ const IMAGE_LEFT_ARROW = [
 
 const container = document.createElement("div");
 container.className = "swipe-back-container";
+
 const leftArrow = document.createElement("img");
 leftArrow.className = "swipe-back-left-arrow";
 leftArrow.src = IMAGE_LEFT_ARROW;
+
 container.appendChild(leftArrow);
 document.body.appendChild(container);
 
@@ -96,4 +98,10 @@ function handleWheel(event) {
   }
 }
 
+function handleScroll() {
+  position = 0;
+  freezeUntil = Date.now() + 1200;
+}
+
 document.addEventListener("wheel", handleWheel);
+document.addEventListener("scroll", handleScroll, { capture: true });
