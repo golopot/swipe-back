@@ -6,7 +6,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "run_at": "document_idle",
+      "run_at": "document_end",
       "js": ["swipe-back.js"],
       "css": ["swipe-back.css"]
     }

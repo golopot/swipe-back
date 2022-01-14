@@ -44,6 +44,21 @@ let freezeUntil = 0;
 let fadeDelay = 500;
 let timeoutHandle = 0;
 
+function debounce(fn, duration) {
+  let expiresAt = 0;
+  return function debouncedFn() {
+    if (Date.now() < expiresAt) {
+      return;
+    }
+    expiresAt = Date.now() + duration;
+    fn();
+  };
+}
+
+const historyBack = debounce(function back() {
+  window.history.back();
+}, 200);
+
 function resetPosition() {
   position = 0;
 }
@@ -53,7 +68,6 @@ function handleWheel(event) {
     freezeUntil = Date.now() + 50;
     return;
   }
-
   if (Date.now() < freezeUntil) {
     return;
   }
@@ -78,7 +92,7 @@ function handleWheel(event) {
   timeoutHandle = window.setTimeout(resetPosition, fadeDelay);
 
   if (position >= 130 * postitionScale) {
-    window.history.back();
+    historyBack();
   }
 }
 
