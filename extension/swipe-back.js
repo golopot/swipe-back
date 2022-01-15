@@ -94,6 +94,8 @@ function handleWheel(event) {
   timeoutHandle = window.setTimeout(resetPosition, fadeDelay);
 
   if (position >= 130 * postitionScale) {
+    position = 0;
+    freezeUntil = Date.now() + 500;
     historyBack();
   }
 }
