@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "swipe-back",
   "version": "0.1.0",
-  "description": "",
+  "description": "A browser extension that emulates swipe back in Mac.",
   "content_scripts": [
     {
       "matches": ["*://*/*"],
