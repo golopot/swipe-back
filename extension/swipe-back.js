@@ -34,17 +34,25 @@ const container = document.createElement("div");
 container.className = "swipe-back-container";
 
 const leftArrow = document.createElement("img");
-leftArrow.className = "swipe-back-left-arrow";
+leftArrow.className = "swipe-back-arrow swipe-back-arrow-left";
 leftArrow.src = IMAGE_LEFT_ARROW;
 
+const rightArrow = document.createElement("img");
+rightArrow.className = "swipe-back-arrow swipe-back-arrow-right";
+rightArrow.src = IMAGE_LEFT_ARROW;
+
 container.appendChild(leftArrow);
+container.appendChild(rightArrow);
 document.body.appendChild(container);
 
 let postitionScale = 6;
 let position = 0;
 let freezeUntil = 0;
 let fadeDelay = 500;
-let timeoutHandle = 0;
+let resetTimeoutID = 0;
+let transitionTimeoutID = 0;
+
+const imageInitialLeft = -110;
 
 function debounce(fn, duration) {
   let expiresAt = 0;
@@ -61,8 +69,36 @@ const historyBack = debounce(function back() {
   window.history.back();
 }, 200);
 
+const historyForward = debounce(function historyForward() {
+  window.history.forward();
+}, 200);
+
 function resetPosition() {
   position = 0;
+  leftArrow.style.left = imageInitialLeft + "px";
+  rightArrow.style.right = imageInitialLeft + "px";
+}
+
+function animateArrow(arrowElement) {
+  const arrow = arrowElement;
+
+  if (arrow === leftArrow) {
+    arrow.style.left = `${
+      imageInitialLeft +
+      Math.min(position, 120 * postitionScale) / postitionScale
+    }px`;
+  } else {
+    arrow.style.right = `${
+      imageInitialLeft +
+      Math.min(-position, 120 * postitionScale) / postitionScale
+    }px`;
+  }
+
+  arrow.classList.remove("transition");
+  window.clearTimeout(transitionTimeoutID);
+  transitionTimeoutID = window.setTimeout(() => {
+    arrow.classList.add("transition");
+  }, 200);
 }
 
 function handleWheel(event) {
@@ -74,29 +110,30 @@ function handleWheel(event) {
     return;
   }
   position -= event.deltaX;
-  if (position < 0) {
-    position = 0;
-  }
   if (position > 150 * postitionScale) {
     position = 150 * postitionScale;
   }
-  leftArrow.style.left = `${
-    -110 + Math.min(position, 120 * postitionScale) / postitionScale
-  }px`;
+  if (position < -150 * postitionScale) {
+    postitionScale = -150 * postitionScale;
+  }
 
-  leftArrow.classList.remove("transition");
+  if (position > 0) {
+    animateArrow(leftArrow);
+  } else {
+    animateArrow(rightArrow);
+  }
 
-  window.setTimeout(() => {
-    leftArrow.classList.add("transition");
-  }, 200);
+  window.clearTimeout(resetTimeoutID);
+  resetTimeoutID = window.setTimeout(resetPosition, fadeDelay);
 
-  window.clearTimeout(timeoutHandle);
-  timeoutHandle = window.setTimeout(resetPosition, fadeDelay);
-
-  if (position >= 130 * postitionScale) {
-    position = 0;
+  if (position >= 130 * postitionScale || position <= -130 * postitionScale) {
     freezeUntil = Date.now() + 500;
-    historyBack();
+    if (position > 0) {
+      historyBack();
+    } else {
+      historyForward();
+    }
+    position = 0;
   }
 }
 
