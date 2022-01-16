@@ -43,7 +43,6 @@ rightArrow.src = IMAGE_LEFT_ARROW;
 
 container.appendChild(leftArrow);
 container.appendChild(rightArrow);
-document.body.appendChild(container);
 
 let postitionScale = 6;
 let position = 0;
@@ -148,5 +147,14 @@ function handleScroll(event) {
   lastScrollX = scrollX;
 }
 
-document.addEventListener("wheel", handleWheel);
-document.addEventListener("scroll", handleScroll, { capture: true });
+function main() {
+  // @ts-ignore
+  if (/Mac/.test(window.navigator.userAgentData.platform)) {
+    return;
+  }
+  document.body.appendChild(container);
+  document.addEventListener("wheel", handleWheel);
+  document.addEventListener("scroll", handleScroll, { capture: true });
+}
+
+main();
