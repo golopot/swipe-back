@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "swipe-back",
   "version": "0.1.0",
-  "description": "A browser extension that emulates swipe back in Mac.",
+  "description": "Go back to previous page by swiping left with two fingers on a trackpad.",
   "content_scripts": [
     {
       "matches": ["*://*/*"],
