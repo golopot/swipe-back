@@ -1,6 +1,5 @@
 {
   "name": "swipe-back",
-  "version": "0.1.0",
   "description": "A browser extension that emulates swipe back in Mac.",
   "private": true,
   "scripts": {

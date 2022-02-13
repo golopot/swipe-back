@@ -149,7 +149,7 @@ function handleScroll(event) {
 
 function main() {
   // @ts-ignore
-  if (/Mac/.test(window.navigator.userAgentData.platform)) {
+  if (/Mac/.test(window.navigator.platform)) {
     return;
   }
   document.body.appendChild(container);

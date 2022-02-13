@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "swipe-back",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Go back to previous page by swiping left with two fingers on a trackpad.",
   "content_scripts": [
     {
